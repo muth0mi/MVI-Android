@@ -15,7 +15,7 @@ class Store<S : State, A : Action>(
     private val _state = MutableStateFlow(initialState)
     val state: StateFlow<S> = _state
 
-    fun dispatch(action: A) {
+    suspend fun dispatch(action: A) {
         middlewares.forEach { middleware -> middleware.process(action, _state.value, this) }
 
         val newState = reducer.reduce(_state.value, action)

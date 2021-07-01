@@ -1,8 +1,11 @@
 package app.mvi.repository
 
+import kotlinx.coroutines.delay
+
 class LoginRepository {
 
-    fun login(email: String, password: String): Boolean {
+    suspend fun login(email: String, password: String): Boolean {
+        delay(2500)
         return true
     }
 }

@@ -5,5 +5,5 @@ package app.mvi.redux
  */
 interface Middleware<S: State, A:Action> {
 
-    fun process(action:A,currentState:S, store: Store<S,A>)
+    suspend fun process(action:A, currentState:S, store: Store<S,A>)
 }

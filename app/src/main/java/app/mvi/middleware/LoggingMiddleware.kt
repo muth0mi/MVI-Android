@@ -12,7 +12,7 @@ import app.mvi.redux.Store
  */
 class LoggingMiddleware<S: State, A: Action> : Middleware<S,A>{
 
-    override fun process(action: A, currentState: S, store: Store<S, A>) {
+    override suspend fun process(action: A, currentState: S, store: Store<S, A>) {
         Log.v("LoggingMiddleware", "Processing Action $action; currentState $currentState")
     }
 }
