@@ -12,7 +12,6 @@ class LoginReducer : Reducer<LoginViewState, LoginAction> {
      * Return a new [LoginViewState]
      */
     override fun reduce(currentState: LoginViewState, action: LoginAction): LoginViewState {
-        Log.v("LoginReducer", "Processing Action $action")
 
         return when (action) {
             is LoginAction.EmailChanged -> currentState.copy(email = action.newEmail)
