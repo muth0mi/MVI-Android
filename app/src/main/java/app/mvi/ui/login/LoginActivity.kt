@@ -49,5 +49,7 @@ class LoginActivity : AppCompatActivity(R.layout.activity_login) {
 //        binding.email.setText(viewState.email)
 //        binding.password.setText(viewState.password)
         binding.loading.visibility = if (viewState.showProgressBar) View.VISIBLE else View.GONE
+        binding.email.error = viewState.emailError
+        binding.password.error = viewState.passwordError
     }
 }

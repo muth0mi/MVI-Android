@@ -17,13 +17,49 @@ class LoginNetworkingMiddleware(
     ) {
         when (action) {
             is LoginAction.SignInButtonClicked -> {
-                store.dispatch(LoginAction.LoginStarted)
-
-                val loggedIn = loginRepository.login(currentState.email, currentState.password)
-                if (loggedIn) store.dispatch(LoginAction.LoginCompleted)
-                else store.dispatch(LoginAction.LoginFailed(Throwable("Unknown Error Occurred")))
+                val validEmail = isEmailValid(currentState, store)
+                val validPassword = isPasswordValid(currentState, store)
+                if (validEmail && validPassword) {
+                    loginUser(store, currentState)
+                }
             }
             else -> Unit
         }
+    }
+
+    private suspend fun isEmailValid(
+        currentState: LoginViewState,
+        store: Store<LoginViewState, LoginAction>
+    ): Boolean {
+        return when {
+            currentState.email.isBlank() -> {
+                store.dispatch(LoginAction.InvalidEmailSubmitted("Please enter your email"))
+                false
+            }
+            else -> true
+        }
+    }
+
+    private suspend fun isPasswordValid(
+        currentState: LoginViewState,
+        store: Store<LoginViewState, LoginAction>
+    ): Boolean {
+        return when {
+            currentState.password.isBlank() -> {
+                store.dispatch(LoginAction.InvalidPasswordSubmitted("Please enter a password"))
+                false
+            }
+            else -> true
+        }
+    }
+
+    private suspend fun loginUser(
+        store: Store<LoginViewState, LoginAction>,
+        currentState: LoginViewState
+    ) {
+        store.dispatch(LoginAction.LoginStarted)
+        val loggedIn = loginRepository.login(currentState.email, currentState.password)
+        if (loggedIn) store.dispatch(LoginAction.LoginCompleted)
+        else store.dispatch(LoginAction.LoginFailed(Throwable("Unknown Error Occurred")))
     }
 }
