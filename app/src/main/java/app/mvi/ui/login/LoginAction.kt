@@ -1,4 +1,4 @@
-package app.mvi.ui.login.mvi
+package app.mvi.ui.login
 
 import app.mvi.redux.Action
 

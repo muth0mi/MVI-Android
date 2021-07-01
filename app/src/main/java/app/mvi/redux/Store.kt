@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
  * A state container for a given screen
  */
 class Store<S : State, A : Action>(
-    private val initialState: S,
+    initialState: S,
     private val reducer: Reducer<S, A>
 ) {
 

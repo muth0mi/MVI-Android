@@ -1,7 +1,6 @@
 package app.mvi.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -10,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import app.mvi.R
 import app.mvi.databinding.ActivityLoginBinding
-import app.mvi.ui.login.mvi.LoginViewState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package app.mvi.ui.login.mvi
+package app.mvi.ui.login
 
 import android.util.Log
 import app.mvi.redux.Reducer
