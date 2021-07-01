@@ -34,11 +34,11 @@ class LoginActivity : AppCompatActivity(R.layout.activity_login) {
         /**
          * whenever a UI action occurs, proxy that to the viewModel
          */
-        binding.email.doOnTextChanged { text, _, _, _ ->
+        binding.etEmail.doOnTextChanged { text, _, _, _ ->
             loginViewModel.emailChanged(text?.toString().orEmpty())
         }
 
-        binding.password.doOnTextChanged { text, _, _, _ ->
+        binding.etPassword.doOnTextChanged { text, _, _, _ ->
             loginViewModel.passwordChanged(text?.toString().orEmpty())
         }
 
@@ -46,8 +46,8 @@ class LoginActivity : AppCompatActivity(R.layout.activity_login) {
     }
 
     private fun processViewState(viewState: LoginViewState) {
-//        binding.email.setText(viewState.email)
-//        binding.password.setText(viewState.password)
+//        binding.etEmail.setText(viewState.email)
+//        binding.etPassword.setText(viewState.password)
         binding.loading.visibility = if (viewState.showProgressBar) View.VISIBLE else View.GONE
         binding.email.error = viewState.emailError
         binding.password.error = viewState.passwordError
